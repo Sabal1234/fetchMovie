@@ -1,57 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #E9C46A; 
+  background-size: cover; 
+  background-position: center;
+  font-family: 'Arial', sans-serif; 
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
+
 .movie-container {
-  max-width: 50rem;
-  margin: 3rem auto;
+  width: 50%;
+  margin: 2.5rem auto;
   padding: 2rem;
-  background-color: #8685a4;
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  background-color: #F4A261; 
+  text-align: center;
 }
 
 .movie-container h2 {
-  text-align: center;
+  color: #264653; 
+  font-family: 'Georgia', serif; 
+  margin-bottom: 1.25rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #333;
 }
 
 .movie-container input {
-  padding: 0.75rem;
+  padding: 0.625rem;
+  border-radius: 0.375rem;
+  background-color: #2A9D8F; 
+  color: #fff; /* Input text color */
+  border: none;
   width: 70%;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
+  font-family: 'Courier New', Courier, monospace; 
   margin-right: 1rem;
-  font-size: 1rem;
 }
 
-.movie-container button {
-  padding: 0.75rem 1.5rem;
-  background-color: #007bff;
-  color: white;
+.movie-container input::placeholder {
+  color: #ffffff; 
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: #E76F51; 
+  color: #fff; 
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.movie-container button:hover {
-  background-color: #0056b3;
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  gap: 1rem;
 }
 
-.movie-details {
-  margin-top: 2rem;
+.movie-card {
+  background-color: #F1FAEE; 
+  border-radius: 0.75rem;
+  padding: 1rem;
+  width: 12rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.movie-details img {
-  max-width: 200px;
+.movie-card img {
+  width: 100%;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
 }
 
-.movie-details p {
+.movie-card h3 {
   font-size: 1rem;
-  color: #444;
-  margin: 0.25rem 0;
+  margin-top: 0.5rem;
+  color: #264653;
+  font-family: 'Georgia', serif; 
 }

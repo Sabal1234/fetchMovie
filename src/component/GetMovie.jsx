@@ -5,12 +5,14 @@ export const GetMovie = () => {
   const [movieName, setMovieName] = useState('');
   const [search, setSearch] = useState('');
 
+  // Use a default search query for all movies until user provides input
+  const defaultSearch = search === '' ? 'Avengers' : search; // Default to "Avengers" for now
+
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['movie', search],
-    queryFn: () =>
-      fetch(`https://www.omdbapi.com/?t=${search}&apikey=6a864e71`)
+    queryKey: ['movie', defaultSearch],
+    queryFn: async () =>
+      await fetch(`https://www.omdbapi.com/?s=${defaultSearch}&apikey=6a864e71`) // Using "s" to fetch a list of movies
         .then((res) => res.json()),
-    enabled: !!search, 
   });
 
   const handleSearch = () => {
@@ -26,35 +28,37 @@ export const GetMovie = () => {
   }
 
   return (
-   <div className="movie-container">
-  <h2>Search Movie</h2>
-  <input
-    type="text"
-    value={movieName}
-    onChange={(e) => setMovieName(e.target.value)}
-    placeholder="Enter movie name"
-  />
-  <button onClick={handleSearch}>Search</button>
+    <div className="movie-container">
+      <h2>Search Movie</h2>
 
-  {data && data.Response === 'True' && (
-    <div className="movie-details">
-      <h3>{data.Title}</h3>
-      <img
-        src={data.Poster !== 'N/A' ? data.Poster : 'https://via.placeholder.com/300x450'}
-        alt={data.Title}
-        width="200"
-      />
-      <p><strong>Year:</strong> {data.Year}</p>
-      <p><strong>Genre:</strong> {data.Genre}</p>
-      <p><strong>Director:</strong> {data.Director}</p>
-      <p><strong>Actors:</strong> {data.Actors}</p>
-      <p><strong>Plot:</strong> {data.Plot}</p>
-      <p><strong>IMDb Rating:</strong> {data.imdbRating}</p>
+      <div className="input-group">
+        <input
+          type="text"
+          value={movieName}
+          onChange={(e) => setMovieName(e.target.value)}
+          placeholder="Enter movie name"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      {data && data.Response === 'True' && (
+        <div className="movie-list">
+          {data.Search.map((movie) => (
+            <div key={movie.imdbID} className="movie-card">
+              <h3>{movie.Title}</h3>
+              <img
+                src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450'}
+                alt={movie.Title}
+                width="200"
+              />
+              <p><strong>Year:</strong> {movie.Year}</p>
+              <p><strong>Type:</strong> {movie.Type}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {data && data.Response === 'False' && <p>No movies found for "{search}".</p>}
     </div>
-  )}
-
-  {data && data.Response === 'False' && <p>No movie found for "{search}".</p>}
-</div>
-
   );
 };
