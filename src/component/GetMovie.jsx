@@ -5,13 +5,12 @@ export const GetMovie = () => {
   const [movieName, setMovieName] = useState('');
   const [search, setSearch] = useState('');
 
-  // Use a default search query for all movies until user provides input
-  const defaultSearch = search === '' ? 'Avengers' : search; // Default to "Avengers" for now
+  const defaultSearch = search === '' ? 'Avengers' : search; 
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['movie', defaultSearch],
     queryFn: async () =>
-      await fetch(`https://www.omdbapi.com/?s=${defaultSearch}&apikey=6a864e71`) // Using "s" to fetch a list of movies
+      await fetch(`https://www.omdbapi.com/?s=${defaultSearch}&apikey=6a864e71`) 
         .then((res) => res.json()),
   });
 

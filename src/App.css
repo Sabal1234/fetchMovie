@@ -10,7 +10,7 @@ body {
   background-position: center;
   font-family: 'Arial', sans-serif; 
   min-height: 100vh;
-  background-repeat: no-repeat;
+ 
 }
 
 .movie-container {
@@ -87,6 +87,6 @@ button {
 .movie-card h3 {
   font-size: 1rem;
   margin-top: 0.5rem;
-  color: #264653;
+  color: #000000;
   font-family: 'Georgia', serif; 
 }
