@@ -46,7 +46,7 @@ export const GetMovie = () => {
             <div key={movie.imdbID} className="movie-card">
               <h3>{movie.Title}</h3>
               <img
-                src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450'}
+                src={movie.Poster}
                 alt={movie.Title}
                 width="200"
               />
